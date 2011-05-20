@@ -32,7 +32,7 @@
 
 
 - (id)initWithPhotos:(NSArray*)photos {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		_photos = [photos retain];
 		_numberOfPhotos = [_photos count];
 		

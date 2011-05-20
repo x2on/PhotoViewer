@@ -30,7 +30,7 @@
 
 
 - (id)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
+    if ((self = [super initWithFrame:frame])) {
 		
 		self.scrollEnabled = YES;
 		self.pagingEnabled = NO;
