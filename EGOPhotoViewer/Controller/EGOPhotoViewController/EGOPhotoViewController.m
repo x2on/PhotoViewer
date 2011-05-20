@@ -199,7 +199,7 @@
 		_storedOldStyles = YES;
 	}	
 	
-	if ([self.navigationController isToolbarHidden] && (!_popover || ([self.photoSource numberOfPhotos] > 1))) {
+	if ([self.navigationController isToolbarHidden] && ((!_popover && ([self.photoSource numberOfPhotos] > 1 || !_actionButtonHidden)) || ([self.photoSource numberOfPhotos] > 1))) {
 		[self.navigationController setToolbarHidden:NO animated:YES];
 	}
 	
@@ -449,13 +449,23 @@
 	} else {
 		
 		[self.navigationController setNavigationBarHidden:hidden animated:animated];
-		[self.navigationController setToolbarHidden:hidden animated:animated];
+    
+		// Set toolbar hidden if there is only one pic and the action menu is hidden
+    if ([self.photoSource numberOfPhotos] <= 1 && _actionButtonHidden)
+      [self.navigationController setToolbarHidden:YES animated:animated];
+    else
+      [self.navigationController setToolbarHidden:hidden animated:animated];
 		
 	}
 #else
 	
 	[self.navigationController setNavigationBarHidden:hidden animated:animated];
-	[self.navigationController setToolbarHidden:hidden animated:animated];
+  
+  // Set toolbar hidden if there is only one pic and the action menu is hidden
+  if ([self.photoSource numberOfPhotos] <= 1 && _actionButtonHidden)
+    [self.navigationController setToolbarHidden:YES animated:animated];
+  else
+    [self.navigationController setToolbarHidden:hidden animated:animated];
 	
 #endif
 	
