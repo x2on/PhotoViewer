@@ -61,6 +61,8 @@
 	BOOL _fromPopover;
 	UIView *_popoverOverlay;
 	UIView *_transferView;
+  
+  BOOL _actionButtonHidden;
 	
 }
 
@@ -76,6 +78,7 @@
 @property(nonatomic,retain) NSMutableArray *photoViews;
 @property(nonatomic,retain) UIScrollView *scrollView;
 @property(nonatomic,assign) BOOL _fromPopover;
+@property(nonatomic,assign) BOOL actionButtonHidden;
 
 - (NSInteger)currentPhotoIndex;
 - (void)moveToPhotoAtIndex:(NSInteger)index animated:(BOOL)animated;

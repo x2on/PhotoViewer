@@ -47,6 +47,7 @@
 @synthesize photoSource=_photoSource; 
 @synthesize photoViews=_photoViews;
 @synthesize _fromPopover;
+@synthesize actionButtonHidden=_actionButtonHidden;
 
 - (id)initWithPhoto:(id<EGOPhoto>)aPhoto {
 	return [self initWithPhotoSource:[[[EGOQuickPhotoSource alloc] initWithPhotos:[NSArray arrayWithObjects:aPhoto,nil]] autorelease]];
@@ -69,7 +70,8 @@
 		self.hidesBottomBarWhenPushed = YES;
 		self.wantsFullScreenLayout = YES;		
 		_photoSource = [aSource retain];
-		_pageIndex=0;
+		_pageIndex = 0;
+    _actionButtonHidden = NO;
 		
 	}
 	
@@ -339,7 +341,7 @@
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
 #endif
 	
-	UIBarButtonItem *action = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(actionButtonHit:)];
+	UIBarButtonItem *action = (_actionButtonHidden) ? [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] : [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(actionButtonHit:)];
 	UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 	
 	if ([self.photoSource numberOfPhotos] > 1) {
