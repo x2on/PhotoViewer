@@ -61,7 +61,7 @@
 }
 
 - (id)initWithPhotoSource:(id <EGOPhotoSource> )aSource{
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleBarsNotification:) name:@"EGOPhotoViewToggleBars" object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(photoViewDidFinishLoading:) name:@"EGOPhotoDidFinishLoading" object:nil];
@@ -77,7 +77,7 @@
 }
 
 - (id)initWithPopoverController:(id)aPopoverController photoSource:(id <EGOPhotoSource>)aPhotoSource {
-	if (self = [self initWithPhotoSource:aPhotoSource]) {
+	if ((self = [self initWithPhotoSource:aPhotoSource])) {
 		_popover = aPopoverController;
 	}
 	
