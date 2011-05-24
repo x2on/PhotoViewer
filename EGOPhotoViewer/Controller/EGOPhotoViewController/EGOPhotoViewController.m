@@ -330,7 +330,7 @@
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
 	if (!_popover && UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad && !_fromPopover) {
 		if (self.modalPresentationStyle == UIModalPresentationFullScreen) {
-			UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
+			UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", @"done") style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
 			self.navigationItem.rightBarButtonItem = doneButton;
 			[doneButton release];
 		}
@@ -967,7 +967,7 @@
 	
 	switch (result) {
 		case MFMailComposeResultSent: ; break;
-		case MFMailComposeResultFailed: mailError = @"Failed sending media, please try again...";
+		case MFMailComposeResultFailed: mailError =NSLocalizedString(@"Failed sending media, please try again...", @"failed MFMailCompose");
 			break;
 		default:
 			break;
