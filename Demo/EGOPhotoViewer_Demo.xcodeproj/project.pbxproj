@@ -26,6 +26,8 @@
 		286B602E11FCCF7400556D9E /* EGOPhotoImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 286B602011FCCF7400556D9E /* EGOPhotoImageView.m */; };
 		286B602F11FCCF7400556D9E /* EGOPhotoScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 286B602311FCCF7400556D9E /* EGOPhotoScrollView.m */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
+		530A6C19138C55F700B0505E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 530A6C17138C55F700B0505E /* Localizable.strings */; };
+		530A6C1E138C566100B0505E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 530A6C1C138C566100B0505E /* Localizable.strings */; };
 		D0B84E5411DFFCB400F4CEF6 /* EGOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B84E4E11DFFCB400F4CEF6 /* EGOCache.m */; };
 		D0B84E5511DFFCB400F4CEF6 /* EGOImageLoadConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B84E5111DFFCB400F4CEF6 /* EGOImageLoadConnection.m */; };
 		D0B84E5611DFFCB400F4CEF6 /* EGOImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B84E5311DFFCB400F4CEF6 /* EGOImageLoader.m */; };
@@ -80,6 +82,8 @@
 		28A0AAE50D9B0CCF005BE974 /* EGOPhotoViewer_Demo_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOPhotoViewer_Demo_Prefix.pch; sourceTree = "<group>"; };
 		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		530A6C18138C55F700B0505E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
+		530A6C1D138C566100B0505E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Localizable.strings; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* EGOPhotoViewer_Demo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "EGOPhotoViewer_Demo-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		D0B84E4D11DFFCB400F4CEF6 /* EGOCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOCache.h; sourceTree = "<group>"; };
 		D0B84E4E11DFFCB400F4CEF6 /* EGOCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOCache.m; sourceTree = "<group>"; };
@@ -151,6 +155,8 @@
 		286B600511FCCF7400556D9E /* EGOPhotoViewer */ = {
 			isa = PBXGroup;
 			children = (
+				530A6C1B138C566100B0505E /* de.lproj */,
+				530A6C16138C55F700B0505E /* en.lproj */,
 				286B600611FCCF7400556D9E /* Controller */,
 				286B600A11FCCF7400556D9E /* EGOPhotoGlobal.h */,
 				286B600B11FCCF7400556D9E /* Model */,
@@ -309,6 +315,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		530A6C16138C55F700B0505E /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				530A6C17138C55F700B0505E /* Localizable.strings */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		530A6C1B138C566100B0505E /* de.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				530A6C1C138C566100B0505E /* Localizable.strings */,
+			);
+			path = de.lproj;
+			sourceTree = "<group>";
+		};
 		D0B84E3B11DFFC3E00F4CEF6 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -395,6 +417,7 @@
 				French,
 				German,
 				en,
+				de,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -427,6 +450,8 @@
 				D0FC1E6412761DCA006C2A0F /* egopv_fullscreen_button@2x.png in Resources */,
 				D0FC1E6512761DCA006C2A0F /* egopv_minimize_fullscreen_button.png in Resources */,
 				03E472B9127E0D610093B3A0 /* local_image_2.jpg in Resources */,
+				530A6C19138C55F700B0505E /* Localizable.strings in Resources */,
+				530A6C1E138C566100B0505E /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +482,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		530A6C17138C55F700B0505E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				530A6C18138C55F700B0505E /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		530A6C1C138C566100B0505E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				530A6C1D138C566100B0505E /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
