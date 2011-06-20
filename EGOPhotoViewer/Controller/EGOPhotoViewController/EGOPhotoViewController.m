@@ -61,6 +61,12 @@
 	return [self initWithPhoto:[[[EGOQuickPhoto alloc] initWithImageURL:anImageURL] autorelease]];
 }
 
+- (id)initWithPhotoSource:(id <EGOPhotoSource> )aSource andPhotoIndex:(NSInteger)index {
+	_pageIndex = index;
+	[self initWithPhotoSource:aSource];
+}
+
+
 - (id)initWithPhotoSource:(id <EGOPhotoSource> )aSource{
 	if ((self = [super init])) {
 		
@@ -70,7 +76,12 @@
 		self.hidesBottomBarWhenPushed = YES;
 		self.wantsFullScreenLayout = YES;		
 		_photoSource = [aSource retain];
-		_pageIndex = 0;
+		if (_pageIndex > 0) {
+			//Do-Nothing
+		}
+		else {
+			_pageIndex = 0;
+		}
     _actionButtonHidden = NO;
 		
 	}

@@ -72,6 +72,7 @@
 - (id)initWithImageURL:(NSURL*)anImageURL;
 
 - (id)initWithPhotoSource:(id <EGOPhotoSource>)aPhotoSource;
+- (id)initWithPhotoSource:(id <EGOPhotoSource> )aSource andPhotoIndex:(NSInteger)index;
 - (id)initWithPopoverController:(id)aPopoverController photoSource:(id <EGOPhotoSource>)aPhotoSource;
 
 @property(nonatomic,readonly) id <EGOPhotoSource> photoSource;
