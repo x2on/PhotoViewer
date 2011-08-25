@@ -48,6 +48,7 @@
 @synthesize photoViews=_photoViews;
 @synthesize _fromPopover;
 @synthesize actionButtonHidden=_actionButtonHidden;
+@synthesize embeddedInPopover = _embeddedInPopover;
 
 - (id)initWithPhoto:(id<EGOPhoto>)aPhoto {
 	return [self initWithPhotoSource:[[[EGOQuickPhotoSource alloc] initWithPhotos:[NSArray arrayWithObjects:aPhoto,nil]] autorelease]];
@@ -63,7 +64,7 @@
 
 - (id)initWithPhotoSource:(id <EGOPhotoSource> )aSource andPhotoIndex:(NSInteger)index {
 	_pageIndex = index;
-	[self initWithPhotoSource:aSource];
+	return [self initWithPhotoSource:aSource];
 }
 
 
@@ -91,7 +92,7 @@
 
 - (id)initWithPopoverController:(id)aPopoverController photoSource:(id <EGOPhotoSource>)aPhotoSource {
 	if ((self = [self initWithPhotoSource:aPhotoSource])) {
-		_popover = aPopoverController;
+		_embeddedInPopover = YES;
 	}
 	
 	return self;
@@ -176,7 +177,7 @@
 			
 			if ([view isKindOfClass:NSClassFromString(@"UIPopoverView")]) {
 				
-				_popover = view;
+				_embeddedInPopover = YES;
 				break;
 			
 			} 
@@ -184,14 +185,14 @@
 		}
 		
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
-		if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad && _popover==nil) {
+		if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad && !_embeddedInPopover) {
 			[self.navigationController setNavigationBarHidden:NO animated:NO];
 		}
 #endif
 		
 	} else {
 		
-		_popover = nil;
+		_embeddedInPopover = NO;
 		
 	}
 	
@@ -210,11 +211,11 @@
 		_storedOldStyles = YES;
 	}	
 	
-	if ([self.navigationController isToolbarHidden] && ((!_popover && ([self.photoSource numberOfPhotos] > 1 || !_actionButtonHidden)) || ([self.photoSource numberOfPhotos] > 1))) {
+	if ([self.navigationController isToolbarHidden] && ((!_embeddedInPopover && ([self.photoSource numberOfPhotos] > 1 || !_actionButtonHidden)) || ([self.photoSource numberOfPhotos] > 1))) {
 		[self.navigationController setToolbarHidden:NO animated:YES];
 	}
 	
-	if (!_popover) {
+	if (!_embeddedInPopover) {
 		self.navigationController.navigationBar.tintColor = nil;
 		self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 		self.navigationController.navigationBar.translucent = YES;
@@ -229,7 +230,7 @@
 	[self setupScrollViewContentSize];
 	[self moveToPhotoAtIndex:_pageIndex animated:NO];
 	
-	if (_popover) {
+	if (_embeddedInPopover) {
 		[self addObserver:self forKeyPath:@"contentSizeForViewInPopover" options:NSKeyValueObservingOptionNew context:NULL];
 	}
 	
@@ -260,7 +261,7 @@
 		
 	}
 	
-	if (_popover) {
+	if (_embeddedInPopover) {
 		[self removeObserver:self forKeyPath:@"contentSizeForViewInPopover"];
 	}
 	
@@ -281,7 +282,7 @@
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
 	_rotating = YES;
 	
-	if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation) && !_popover) {
+	if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation) && !_embeddedInPopover) {
 		CGRect rect = [[UIScreen mainScreen] bounds];
 		self.scrollView.contentSize = CGSizeMake(rect.size.height * [self.photoSource numberOfPhotos], rect.size.width);
 	}
@@ -333,13 +334,13 @@
 	
 	[self setupViewForPopover];
 
-	if(_popover && [self.photoSource numberOfPhotos] == 1) {
+	if(_embeddedInPopover && [self.photoSource numberOfPhotos] == 1) {
 		[self.navigationController setToolbarHidden:YES animated:NO];
 		return;
 	}
 	
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
-	if (!_popover && UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad && !_fromPopover) {
+	if (!_embeddedInPopover && UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad && !_fromPopover) {
 		if (self.modalPresentationStyle == UIModalPresentationFullScreen) {
 			UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", @"done") style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
 			self.navigationItem.rightBarButtonItem = doneButton;
@@ -362,7 +363,7 @@
 		UIBarButtonItem *fixedLeft = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
 		fixedLeft.width = 40.0f;
 		
-		if (_popover && [self.photoSource numberOfPhotos] > 1) {
+		if (_embeddedInPopover && [self.photoSource numberOfPhotos] > 1) {
 			UIBarButtonItem *scaleButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"egopv_fullscreen_button.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(toggleFullScreen:)];
 			self.navigationItem.rightBarButtonItem = scaleButton;
 			[scaleButton release];
@@ -430,7 +431,7 @@
 - (void)setBarsHidden:(BOOL)hidden animated:(BOOL)animated{
 	if (hidden&&_barsHidden) return;
 	
-	if (_popover && [self.photoSource numberOfPhotos] == 0) {
+	if (_embeddedInPopover && [self.photoSource numberOfPhotos] == 0) {
 		[_captionView setCaptionHidden:hidden];
 		return;
 	}
@@ -440,7 +441,7 @@
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
 		
-		if (!_popover) {
+		if (!_embeddedInPopover) {
 			
 			if (animated) {
 				[UIView beginAnimations:nil context:NULL];
@@ -498,7 +499,7 @@
 
 - (void)setupViewForPopover{
 	
-	if (!_popoverOverlay && _popover && [self.photoSource numberOfPhotos] == 1) {
+	if (!_popoverOverlay && _embeddedInPopover && [self.photoSource numberOfPhotos] == 1) {
 				
 		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0f, self.view.frame.size.height, self.view.frame.size.width, 40.0f)];
 		view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
@@ -800,7 +801,7 @@
 
 - (void)setupScrollViewContentSize{
 	
-	CGFloat toolbarSize = _popover ? 0.0f : self.navigationController.toolbar.frame.size.height;	
+	CGFloat toolbarSize = _embeddedInPopover ? 0.0f : self.navigationController.toolbar.frame.size.height;	
 	
 	CGSize contentSize = self.view.bounds.size;
 	contentSize.width = (contentSize.width * [self.photoSource numberOfPhotos]);
@@ -1002,7 +1003,7 @@
 	
 	if ([MFMailComposeViewController canSendMail]) {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
-		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && !_popover) {
+		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && !_embeddedInPopover) {
 			actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"Speichern", @"Kopieren", @"E-Mail", nil];
 		} else {
 			actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Abbrechen" destructiveButtonTitle:nil otherButtonTitles:@"Speichern", @"Kopieren", @"E-Mail", nil];
@@ -1014,7 +1015,7 @@
 	} else {
 		
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
-		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && !_popover) {
+		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && !_embeddedInPopover) {
 			actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"Speichern", @"Kopieren", nil];
 		} else {
 			actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Abbrechen" destructiveButtonTitle:nil otherButtonTitles:@"Speichern", @"Kopieren", nil];
