@@ -55,7 +55,7 @@
 	BOOL _oldToolBarHidden;
 
 	BOOL _autoresizedPopover;
-	id _popover;
+	BOOL _embeddedInPopover;
 	
 	BOOL _fullScreen;
 	BOOL _fromPopover;
@@ -80,6 +80,7 @@
 @property(nonatomic,retain) UIScrollView *scrollView;
 @property(nonatomic,assign) BOOL _fromPopover;
 @property(nonatomic,assign) BOOL actionButtonHidden;
+@property(nonatomic, assign) BOOL embeddedInPopover;
 
 - (NSInteger)currentPhotoIndex;
 - (void)moveToPhotoAtIndex:(NSInteger)index animated:(BOOL)animated;
