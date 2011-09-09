@@ -25,6 +25,7 @@
 //
 
 #import "EGOPhotoViewController.h"
+#import "UINavigationItem+ColoredTitle.h"
 
 @interface EGOPhotoViewController (Private)
 - (void)loadScrollViewWithPage:(NSInteger)page;
@@ -708,7 +709,7 @@
 	}
 	
 	if ([self.photoSource numberOfPhotos] > 1) {
-		self.title = [NSString stringWithFormat:NSLocalizedString(@"%i von %i", @"imageCounter"), _pageIndex+1, [self.photoSource numberOfPhotos]];
+        [self.navigationItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"%i von %i", @"imageCounter"), _pageIndex+1, [self.photoSource numberOfPhotos]] withColor:[UIColor whiteColor]];
 	} else {
 		self.title = @"";
 	}
