@@ -47,6 +47,7 @@
 		D0FC1E6312761DCA006C2A0F /* egopv_fullscreen_button.png in Resources */ = {isa = PBXBuildFile; fileRef = D0FC1E6012761DCA006C2A0F /* egopv_fullscreen_button.png */; };
 		D0FC1E6412761DCA006C2A0F /* egopv_fullscreen_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0FC1E6112761DCA006C2A0F /* egopv_fullscreen_button@2x.png */; };
 		D0FC1E6512761DCA006C2A0F /* egopv_minimize_fullscreen_button.png in Resources */ = {isa = PBXBuildFile; fileRef = D0FC1E6212761DCA006C2A0F /* egopv_minimize_fullscreen_button.png */; };
+		FDC95EB4141E043800570611 /* UINavigationItem+ColoredTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC95EB3141E043800570611 /* UINavigationItem+ColoredTitle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +112,8 @@
 		D0FC1E6012761DCA006C2A0F /* egopv_fullscreen_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = egopv_fullscreen_button.png; sourceTree = "<group>"; };
 		D0FC1E6112761DCA006C2A0F /* egopv_fullscreen_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "egopv_fullscreen_button@2x.png"; sourceTree = "<group>"; };
 		D0FC1E6212761DCA006C2A0F /* egopv_minimize_fullscreen_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = egopv_minimize_fullscreen_button.png; sourceTree = "<group>"; };
+		FDC95EB2141E043800570611 /* UINavigationItem+ColoredTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationItem+ColoredTitle.h"; path = "../../UINavigationItem+ColoredTitle.h"; sourceTree = "<group>"; };
+		FDC95EB3141E043800570611 /* UINavigationItem+ColoredTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationItem+ColoredTitle.m"; path = "../../UINavigationItem+ColoredTitle.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +183,8 @@
 			children = (
 				286B600811FCCF7400556D9E /* EGOPhotoViewController.h */,
 				286B600911FCCF7400556D9E /* EGOPhotoViewController.m */,
+				FDC95EB2141E043800570611 /* UINavigationItem+ColoredTitle.h */,
+				FDC95EB3141E043800570611 /* UINavigationItem+ColoredTitle.m */,
 			);
 			path = EGOPhotoViewController;
 			sourceTree = "<group>";
@@ -478,6 +483,7 @@
 				286B602D11FCCF7400556D9E /* EGOPhotoCaptionView.m in Sources */,
 				286B602E11FCCF7400556D9E /* EGOPhotoImageView.m in Sources */,
 				286B602F11FCCF7400556D9E /* EGOPhotoScrollView.m in Sources */,
+				FDC95EB4141E043800570611 /* UINavigationItem+ColoredTitle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
