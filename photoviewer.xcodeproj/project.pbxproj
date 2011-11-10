@@ -324,6 +324,7 @@
 		FD28E2D0139CCF0D00CD6A38 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = Immobilienscout24;
 			};
 			buildConfigurationList = FD28E2D3139CCF0D00CD6A38 /* Build configuration list for PBXProject "photoviewer" */;
