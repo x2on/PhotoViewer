@@ -32,7 +32,7 @@
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
 		
-		self.scrollEnabled = YES;
+		self.scrollEnabled = NO;
 		self.pagingEnabled = NO;
 		self.clipsToBounds = NO;
 		self.maximumZoomScale = 3.0f;
@@ -54,12 +54,12 @@
 
 - (void)zoomRectWithCenter:(CGPoint)center{
 	
-	if (self.zoomScale > 1.0f) {
-
-		[((EGOPhotoImageView*)self.superview) killScrollViewZoom];
-	
-		return;
-	}
+    if (self.zoomScale > 1.0f) {
+        self.scrollEnabled = NO;
+        [((EGOPhotoImageView*)self.superview) killScrollViewZoom];
+        return;
+    }
+    self.scrollEnabled = YES;
 
 	CGRect rect;
 	rect.size = CGSizeMake(self.frame.size.width / EGOPV_ZOOM_SCALE, self.frame.size.height / EGOPV_ZOOM_SCALE);

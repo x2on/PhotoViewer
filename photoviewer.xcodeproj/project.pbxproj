@@ -31,6 +31,8 @@
 		FD28E38A139CD08000CD6A38 /* EGOImageLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = FD28E384139CD08000CD6A38 /* EGOImageLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FD28E38B139CD08000CD6A38 /* EGOImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = FD28E385139CD08000CD6A38 /* EGOImageLoader.m */; };
 		FD28E38D139CD09600CD6A38 /* photoviewer-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = FD28E38C139CD09600CD6A38 /* photoviewer-Prefix.pch */; };
+		FD6148651419EF8E00E68AC6 /* UINavigationItem+ColoredTitle.h in Headers */ = {isa = PBXBuildFile; fileRef = FD6148631419EF8E00E68AC6 /* UINavigationItem+ColoredTitle.h */; };
+		FD6148661419EF8E00E68AC6 /* UINavigationItem+ColoredTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6148641419EF8E00E68AC6 /* UINavigationItem+ColoredTitle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +74,8 @@
 		FD28E384139CD08000CD6A38 /* EGOImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageLoader.h; sourceTree = "<group>"; };
 		FD28E385139CD08000CD6A38 /* EGOImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageLoader.m; sourceTree = "<group>"; };
 		FD28E38C139CD09600CD6A38 /* photoviewer-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "photoviewer-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		FD6148631419EF8E00E68AC6 /* UINavigationItem+ColoredTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+ColoredTitle.h"; sourceTree = "<group>"; };
+		FD6148641419EF8E00E68AC6 /* UINavigationItem+ColoredTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+ColoredTitle.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +147,8 @@
 				FD28E352139CD07900CD6A38 /* Model */,
 				FD28E35A139CD07900CD6A38 /* Resources */,
 				FD28E366139CD07900CD6A38 /* Views */,
+				FD6148631419EF8E00E68AC6 /* UINavigationItem+ColoredTitle.h */,
+				FD6148641419EF8E00E68AC6 /* UINavigationItem+ColoredTitle.m */,
 			);
 			path = EGOPhotoViewer;
 			sourceTree = SOURCE_ROOT;
@@ -288,6 +294,7 @@
 				FD28E388139CD08000CD6A38 /* EGOImageLoadConnection.h in Headers */,
 				FD28E38A139CD08000CD6A38 /* EGOImageLoader.h in Headers */,
 				FD28E38D139CD09600CD6A38 /* photoviewer-Prefix.pch in Headers */,
+				FD6148651419EF8E00E68AC6 /* UINavigationItem+ColoredTitle.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +324,7 @@
 		FD28E2D0139CCF0D00CD6A38 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = Immobilienscout24;
 			};
 			buildConfigurationList = FD28E2D3139CCF0D00CD6A38 /* Build configuration list for PBXProject "photoviewer" */;
@@ -351,6 +359,7 @@
 				FD28E387139CD08000CD6A38 /* EGOCache.m in Sources */,
 				FD28E389139CD08000CD6A38 /* EGOImageLoadConnection.m in Sources */,
 				FD28E38B139CD08000CD6A38 /* EGOImageLoader.m in Sources */,
+				FD6148661419EF8E00E68AC6 /* UINavigationItem+ColoredTitle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,15 +381,18 @@
 		FD28E2E1139CCF0D00CD6A38 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -388,12 +400,15 @@
 		FD28E2E2139CCF0D00CD6A38 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -405,7 +420,7 @@
 				DSTROOT = /tmp/photoviewer.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "photoviewer-Prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = include;
@@ -419,7 +434,7 @@
 				DSTROOT = /tmp/photoviewer.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "photoviewer-Prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = include;

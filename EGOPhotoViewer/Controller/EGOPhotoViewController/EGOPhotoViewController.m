@@ -25,6 +25,7 @@
 //
 
 #import "EGOPhotoViewController.h"
+#import "UINavigationItem+ColoredTitle.h"
 
 @interface EGOPhotoViewController (Private)
 - (void)loadScrollViewWithPage:(NSInteger)page;
@@ -271,7 +272,7 @@
 	
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-		return YES;
+        return (interfaceOrientation == UIInterfaceOrientationLandscapeRight || interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
 	}
 #endif
 	
@@ -342,11 +343,16 @@
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
 	if (!_embeddedInPopover && UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad && !_fromPopover) {
 		if (self.modalPresentationStyle == UIModalPresentationFullScreen) {
-			UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", @"done") style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
+			UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Fertig", @"done") style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
 			self.navigationItem.rightBarButtonItem = doneButton;
 			[doneButton release];
 		}
 	} else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+		if (self.modalPresentationStyle == UIModalPresentationFullScreen) {
+			UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Fertig", @"done") style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
+			self.navigationItem.rightBarButtonItem = doneButton;
+			[doneButton release];
+		}
 		[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
 	}
 #else 
@@ -708,7 +714,7 @@
 	}
 	
 	if ([self.photoSource numberOfPhotos] > 1) {
-		self.title = [NSString stringWithFormat:NSLocalizedString(@"%i von %i", @"imageCounter"), _pageIndex+1, [self.photoSource numberOfPhotos]];
+        [self.navigationItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"%i von %i", @"imageCounter"), _pageIndex+1, [self.photoSource numberOfPhotos]] withColor:[UIColor whiteColor]];
 	} else {
 		self.title = @"";
 	}
