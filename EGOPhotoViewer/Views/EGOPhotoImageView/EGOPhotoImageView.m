@@ -580,5 +580,22 @@
 	
 }
 
+#pragma mark -
+#pragma mark Hide bars
+
+- (void)toggleBars{
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"EGOPhotoViewToggleBars" object:nil];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    [super touchesEnded:touches withEvent:event];
+    UITouch *touch = [touches anyObject];
+    
+    if (touch.tapCount == 1) {
+        [self performSelector:@selector(toggleBars) withObject:nil afterDelay:.2];
+    } 
+}
+
+
 
 @end
